@@ -1,110 +1,13 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include<stdio.h>
+#include<stdlib.h>
+int main(){
+int queue[]={12,15,18,9,7,59,89,17};
+int total = 0;
+for(int i=0;i<7;i++){
+    printf("\n%d: diff: %d",queue[i],abs(queue[i+1]-queue[i]));
 
-int main()
-{
-    int queue[] = {12, 15, 18, 9, 7, 59, 89, 17};
-    int visited[8] = {0};
-    int head = 5;
-    int total = 0;
-
-    for(int count = 0; count < 8; count++)
-    {
-        int min = 9999;
-        int pos = -1;
-
-        for(int i = 0; i < 8; i++)
-        {
-            if(visited[i] == 0)
-            {
-                int distance = abs(queue[i] - head);
-
-                if(distance < min)
-                {
-                    min = distance;
-                    pos = i;
-                }
-            }
-        }
-
-        visited[pos] = 1;
-        total = total + min;
-        head = queue[pos];
-    }
-
-    printf("Total head movement = %d", total);
-
-    return 0;
-} and 
-
-
-#include <stdio.h>
-#include <stdlib.h>
-
-int main()
-{
-    int queue[] = {12, 15, 18, 9, 7, 59, 89, 17};
-    int head = 5;
-    int total = 0;
-
-    // Sort queue
-    for(int i = 0; i < 8 - 1; i++)
-    {
-        for(int j = i + 1; j < 8; j++)
-        {
-            if(queue[i] > queue[j])
-            {
-                int temp = queue[i];
-                queue[i] = queue[j];
-                queue[j] = temp;
-            }
-        }
-    }
-
-    // Move in increasing direction
-    for(int i = 0; i < 8; i++)
-    {
-        if(queue[i] >= head)
-        {
-            total = total + abs(queue[i] - head);
-            head = queue[i];
-        }
-    }
-
-    // Move back in decreasing direction
-    for(int i = 7; i >= 0; i--)
-    {
-        if(queue[i] < 5)
-        {
-            total = total + abs(queue[i] - head);
-            head = queue[i];
-        }
-    }
-
-    printf("Total head movement = %d", total);
-
-    return 0;
-
-#include <stdio.h>
-#include <stdlib.h>
-
-int main()
-{
-    int queue[] = {12, 15, 18, 9, 7, 59, 89, 17};
-    int total = 0;
-
-    for (int i = 0; i < 7; i++)
-    {
-        printf("\n%d -> %d : diff = %d",
-               queue[i],
-               queue[i + 1],
-               abs(queue[i + 1] - queue[i]));
-
-        total += abs(queue[i + 1] - queue[i]);
-    }
-
-    printf("\n\nTotal Head Movement = %d", total);
-
-    return 0;
+    total += abs(queue[i+1]-queue[i]);
 }
+printf("\n total :%d",total);
+return 1;
 }
