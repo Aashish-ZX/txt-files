@@ -1,26 +1,60 @@
-•	Use Link: Link: https://dbis-uibk.github.io/relax/calc/local/draft/draft/0
-•	Click on –“Group Editor ” Tab
-•	Paste These Tables
+#include <stdio.h>
+#include <stdlib.h>
 
-group: TEST
-Course = {
-CourseID, CourseName, Instructor
-101, 'Mathematics', 'Dr. Smith'
-102, 'Computer Science', 'Prof. Johnson'
-103, 'History', 'Dr. Williams'
+int main()
+{
+    int queue[] = {12, 15, 18, 9, 7, 59, 89, 17};
+    int head = 5;
+    int total = 0;
+
+    for(int i = 0; i < 8; i++)
+    {
+        total = total + abs(queue[i] - head);
+        head = queue[i];
+    }
+
+    printf("Total head movement = %d", total);
+
+    return 0;
 }
 
-Enrollment = {
-EnrollmentID, StudentID, CourseID, Grade
-1, 1001, 101, 'A'
-2, 1001, 102, 'B'
-3, 1002, 101, 'C'
-4, 1002, 103, 'A'
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int queue[] = {12, 15, 18, 9, 7, 59, 89, 17};
+    int visited[8] = {0};
+    int head = 5;
+    int total = 0;
+
+    for(int count = 0; count < 8; count++)
+    {
+        int min = 9999;
+        int pos = -1;
+
+        for(int i = 0; i < 8; i++)
+        {
+            if(visited[i] == 0)
+            {
+                int distance = abs(queue[i] - head);
+
+                if(distance < min)
+                {
+                    min = distance;
+                    pos = i;
+                }
+            }
+        }
+
+        visited[pos] = 1;
+        total = total + min;
+        head = queue[pos];
+    }
+
+    printf("Total head movement = %d", total);
+
+    return 0;
 }
 
-Department = {
-DeptID, DeptName, Location
-1, 'Mathematics', 'Building A'
-2, 'Computer Science', 'Building B'
-3, 'History', 'Building C'
-}
